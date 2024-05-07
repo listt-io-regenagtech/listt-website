@@ -116,7 +116,7 @@ export default function App() {
         {/* Conditional rendering based on activeSection */}
         {activeSection === 'about' && (
           <section>
-            <h1 className="title">Welcome to <a href="http://www.listt.io/">listt.io</a></h1>
+            <h1 className="title"> <span className="welcome">Welcome to</span> <a href="http://www.listt.io/">listt.io</a></h1>
             <p className="description" style={{ textAlign: 'center' }}>appropriate technology solutions for regeneration</p>
            
         <div className="mobile-enclosure-container">
@@ -409,6 +409,15 @@ and complements to large agtech providers.</p>
           line-height: 1.15;
           font-size: 4rem;
         }
+
+        .welcome{
+          line-height: 1.15;
+          font-size: 4rem;
+          color: black;
+
+        }
+
+       
 
         .mobile-enclosure-container {
           display: flex;
