@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/listt-website/static/css/main.e6c13ad2.css",
-    "main.js": "/listt-website/static/js/main.4c8f29ab.js",
+    "main.js": "/listt-website/static/js/main.50741d2d.js",
     "static/js/453.1f853266.chunk.js": "/listt-website/static/js/453.1f853266.chunk.js",
     "static/media/mobile_enclosure0.jpeg": "/listt-website/static/media/mobile_enclosure0.a287a4982f80c8bd9241.jpeg",
     "static/media/stage3.png": "/listt-website/static/media/stage3.5cb293db57f026806fb9.png",
@@ -24,11 +24,11 @@
     "static/media/github.png": "/listt-website/static/media/github.c8007a9fb185cb152ee6.png",
     "index.html": "/listt-website/index.html",
     "main.e6c13ad2.css.map": "/listt-website/static/css/main.e6c13ad2.css.map",
-    "main.4c8f29ab.js.map": "/listt-website/static/js/main.4c8f29ab.js.map",
+    "main.50741d2d.js.map": "/listt-website/static/js/main.50741d2d.js.map",
     "453.1f853266.chunk.js.map": "/listt-website/static/js/453.1f853266.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.e6c13ad2.css",
-    "static/js/main.4c8f29ab.js"
+    "static/js/main.50741d2d.js"
   ]
 }
