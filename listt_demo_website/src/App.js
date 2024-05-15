@@ -1,4 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
+import './App.css';
+import { useInView } from 'react-intersection-observer';
 import { Helmet } from 'react-helmet';
 import emailjs from 'emailjs-com';
 import Kristof from './images/team_images/kristof.png';
@@ -6,11 +8,19 @@ import alan from './images/team_images/alan.png';
 import erwann from './images/team_images/erwann.png';
 import thomas from './images/team_images/thomas.png';
 import swapnil from './images/team_images/swapnil.png';
+import team_image from './images/team_images/team_image.jpeg'
+
+import innovate_uk from './images/partnership_images/innovate_uk.png'
+import gentle_farming from './images/partnership_images/gentle_farming.png'
+import harper_adams from './images/partnership_images/harper_adams.png'
+import Carbon from './images/partnership_images/Carbon-Trust.png'
+import regen_earth from './images/partnership_images/regen_earth.jpeg'
+import sustainanle_ventures from './images/partnership_images/sustainanle_ventures.png'
 
 import github from './images/footer_icons/github.png'
 import linkedin from './images/footer_icons/linkedin.png'
 import medium from './images/footer_icons/medium.png'
-import web from './images/footer_icons/web.png'
+import email from './images/footer_icons/email.png'
 
 import stage1 from './images/mobile_enclosure/stage1.png';
 import stage2 from './images/mobile_enclosure/stage2.png';
@@ -18,14 +28,26 @@ import stage3 from './images/mobile_enclosure/stage3.png';
 import stage4 from './images/mobile_enclosure/stage4.png';
 
 import mobile_enclosure from './images/mobile_enclosure/mobile_enclosure.jpeg';
-import container_logo from './images/mobile_enclosure/mobile_enclosure0.jpeg';
+import mobile_enclosure0 from './images/mobile_enclosure/mobile_enclosure0.jpeg';
 import mobile_enclosure1 from './images/mobile_enclosure/mobile_enclosure1.jpeg';
 import mobile_enclosure2 from './images/mobile_enclosure/mobile_enclosure2.jpeg';
+
+import dug1 from './images/grasslands_ai/dug.JPG';
+import clover_count from './images/grasslands_ai/clover.png'
+import dashboard from './images/grasslands_ai/dashboard.png'
+import interpolation from './images/grasslands_ai/interpolation.png'
+import interpolation3 from './images/grasslands_ai/interpolation2.png'
+import gentle_farm from './images/grasslands_ai/gentle_farm.png'
+import autonomy from './images/grasslands_ai/autonomy.png'
+
+
+import farm_ng_fp from './images/front_page/robot_new_hatterrel.png'
 
 import farm_ng_logo from './images/farm_ng/farm_ng0.jpeg';
 
 
-import front_page_logo from './images/front_page/listt_logo_with_name.jpg'
+import front_page_logo from './images/front_page/listt_logo_with_name1.png'
+import front_page_header_logo from './images/front_page/listt_logo_with_yellow_logo.png'
 
 
 
@@ -36,7 +58,7 @@ export default function App() {
   const [activeSection, setActiveSection] = useState('about');
   const form = useRef();
 
-  const benefits = [
+  const benefits1 = [
     {
       id: 1,
       title: "Simple Build",
@@ -63,21 +85,73 @@ export default function App() {
     }
   ];
 
-  const images = [
-    mobile_enclosure,mobile_enclosure1,mobile_enclosure2  // Replace these with your actual image URLs
-   
+  const benefits2 = [
+    {
+      id: 1,
+      title: "Autonomous navigation",
+      description: " Click here to add your own text.",
+      icon: autonomy  // Update path to your icon
+    },
+    {
+      id: 2,
+      title: "Clover Count",
+      description: "Click here to add your own text.",
+      icon: clover_count // Update path to your icon
+    },
+    {
+      id: 3,
+      title: "Real-time Dashboard ",
+      description: "Click here to add your own text.",
+      icon: dashboard   // Update path to your icon
+    },
+    {
+      id: 4,
+      title: "Heat-map Generation ",
+      description: "Click here to add your own text.",
+      icon: interpolation3   // Update path to your icon
+    },
+    
+    
   ];
 
   const [currentIndex, setCurrentIndex] = useState(0);
+  const enclosure_images = [mobile_enclosure,mobile_enclosure0,mobile_enclosure1,mobile_enclosure2  // Replace these with your actual image URLs
+   
+  ];
 
+  const [farmNgIndex, setFarmNgIndex] = useState(0);
+  const farmNgImages = [farm_ng_logo,farm_ng_logo]; // Add your actual image URLs for farm_ng section here
+
+  const [cloverMappingIndex, setCloverMappingIndex] = useState(0);
+  const cloverMappingImages = [dug1,gentle_farm,interpolation]; // Add your actual image URLs for clover_mapping section here
+
+  // Sliders intervals
   useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentIndex(prevIndex => (prevIndex + 1) % images.length);
-    }, 3000); // Change image every 3000 milliseconds
+    const enclosureInterval = setInterval(() => {
+      setCurrentIndex(prevIndex => (prevIndex + 1) % enclosure_images.length);
+    }, 3000);
 
-    return () => clearInterval(interval);
-  }, [images.length]);
+    const farmNgInterval = setInterval(() => {
+      setFarmNgIndex(prevIndex => (prevIndex + 1) % farmNgImages.length);
+    }, 3000);
 
+    const cloverMappingInterval = setInterval(() => {
+      setCloverMappingIndex(prevIndex => (prevIndex + 1) % cloverMappingImages.length);
+    }, 3000);
+
+    return () => {
+      clearInterval(enclosureInterval);
+      clearInterval(farmNgInterval);
+      clearInterval(cloverMappingInterval);
+    };
+  }, [enclosure_images.length, farmNgImages.length, cloverMappingImages.length]);
+
+  const CarouselComponent = () => {
+    const { ref, inView } = useInView({
+        triggerOnce: true,
+        threshold: 0.5
+    });
+  }
   const sendEmail = (e) => {
     e.preventDefault();
 
@@ -108,7 +182,7 @@ export default function App() {
           <a href="#" onClick={() => setActiveSection('about')}>About</a>
           <a href="#" onClick={() => setActiveSection('mobile_enclosure')}>Mobile Enclosure</a>
           <a href="#" onClick={() => setActiveSection('farm_ng')}>Farm Ng</a>
-          <a href="#" onClick={() => setActiveSection('clover_mapping')}>Clover Mapping</a>
+          <a href="#" onClick={() => setActiveSection('clover_mapping')}>Grassland AI</a>
           <a href="#" onClick={() => setActiveSection('contact')}>Contact</a>
         </nav>
       </header>
@@ -116,7 +190,12 @@ export default function App() {
         {/* Conditional rendering based on activeSection */}
         {activeSection === 'about' && (
           <section>
-            <h1 className="title"> <span className="welcome">Welcome to</span> <a href="http://www.listt.io/">listt.io</a></h1>
+            <h1 className="title">
+              <span className="welcome">Welcome to</span>
+              <a href="http://www.listt.io/">
+                <img src={front_page_header_logo} alt="listt.io Logo" style={{ padding: '40px' ,height: '100px', verticalAlign: 'middle' }} />
+              </a>
+            </h1>
             <p className="description" style={{ textAlign: 'center' }}>appropriate technology solutions for regeneration</p>
            
         <div className="mobile-enclosure-container">
@@ -124,48 +203,127 @@ export default function App() {
                 <div className="mobile-enclosure-text">
                   <h1 style={{ fontSize: '50px', textAlign: 'center' }}> Introduction </h1>
                   <p>listt.io is a UK-based startup focusing on delivering appropriate and scalable technology
-solutions for regenerative agricultural businesses. Its background and core expertise lies in
-technology development in an innovation context - around robotics, connected sensors,
-machine vision and cloud infrastructure. The core values of the company are built around
-serving a customer segment of farming businesses who wish to build sustainable food
-systems closer to nature. We want to help these businesses access the appropriate level of
-technological innovation to allow them to benefit from the efficiencies and insights they can
-deliver. As well as the technologies, listt.io is exploring novel business models, to allow these
-technologies to commercialise and reach a wider farming community, offering alternatives
-and complements to large agtech providers.</p>
-</div>
+                      solutions for regenerative agricultural businesses. Its background and core expertise lies in
+                      technology development in an innovation context - around robotics, connected sensors,
+                      machine vision and cloud infrastructure. The core values of the company are built around
+                      serving a customer segment of farming businesses who wish to build sustainable food
+                      systems closer to nature. We want to help these businesses access the appropriate level of
+                      technological innovation to allow them to benefit from the efficiencies and insights they can
+                      deliver. As well as the technologies, listt.io is exploring novel business models, to allow these
+                      technologies to commercialise and reach a wider farming community, offering alternatives
+                      and complements to large agtech providers.</p>
+                      </div>
                 <img src={front_page_logo} alt="listt logo" className="listt-logo-image" />
                 </div>
                 </div>
 
-            <h2 style={{textAlign: "center", fontSize:'50px' , fontWeight: 'bold' }}>Meet Our Team</h2>
+            <h2 style={{textAlign: "center", fontSize:'40px' , fontWeight: 'bold' }}>Meet Our Team</h2>
+            <img className="group-photo" src= {team_image} alt="team_image" />
         <div className="team-container">
           <div className="team-member">
             <img src= {Kristof} alt="Kristof" />
-            <h3>Kristof</h3>
+            <h3 >Kristof Hayes </h3> 
             <p>Role: Founder</p>
+            <div className="linkedin-button-container">
+              <button className="blue-button" onClick={() => window.open("https://uk.linkedin.com/in/hayeskg", "_blank")}>
+              Connect on LinkedIn
+              </button>
+        </div>
           </div>
           <div className="team-member">
             <img src= {alan} alt="Alan" />
-            <h3>Alan</h3>
+            <h3>Alan Jurnet Berteloot</h3>
             <p>Role: Tech Lead</p>
-          </div>
+            <div className="linkedin-button-container">
+              <button className="blue-button" onClick={() => window.open("https://uk.linkedin.com/in/alan-jurnet-berteloot", "_blank")}>
+              Connect on LinkedIn
+              </button>
+        </div>
+        </div>
           <div className="team-member">
             <img src= {erwann} alt="Erwann" />
-            <h3>Erwann</h3>
+            <h3>Erwann Lompech Leneveu</h3>
             <p>Role: Operations Lead</p>
+            <div className="linkedin-button-container">
+              <button className="blue-button" onClick={() => window.open("https://www.linkedin.com/in/kristof-profile", "_blank")}>
+              Connect on LinkedIn
+              </button>
+        </div>
           </div>
           <div className="team-member">
             <img src= {thomas} alt="Thomas" />
-            <h3>Thomas</h3>
+            <h3>Thomas Gent</h3>
             <p>Role: Farming Lead</p>
+            <div className="linkedin-button-container">
+              <button className="blue-button" onClick={() => window.open("https://uk.linkedin.com/in/thomas-gent-farmer", "_blank")}>
+               Connect on LinkedIn
+              </button>
+        </div>
           </div>
           <div className="team-member">
             <img src= {swapnil} alt="Swapnil" />
-            <h3>Swapnil</h3>
+            <h3>Swapnil Mane</h3>
             <p>Role: Robotics Engineer</p>
+            <div className="linkedin-button-container">
+              <button className="blue-button" onClick={() => window.open("https://uk.linkedin.com/in/swapnil-mane-b3b164176", "_blank")}>
+              Connect on LinkedIn
+              </button>
+        </div>
           </div>
         </div>
+
+        <div className="carousel-container">
+            <h2 style={{textAlign: "center", fontSize:'40px' , fontWeight: 'bold' , marginTop: '20px' }}>What we offer to you ?</h2>
+            <p>content</p>
+            <div className="carousel">
+                <div className="carousel-item">
+                    <img src={stage2}alt="Mobile_enclosure" />
+                    <h3>Mobile Enclosure</h3>
+                    <p>A robotic system for monitoring, analysing, and treating pests...</p>
+                </div>
+                <div className="carousel-item">
+                    <img src={farm_ng_fp} alt="Far_NG" />
+                    <h3>Farm-Ng</h3>
+                    <p>Integration of Rootwave's non-chemical weeding probes...</p>
+                </div>
+                <div className="carousel-item">
+                    <img src={front_page_logo} alt="Robotic soil sampling" />
+                    <h3>Soil Health Monitoring</h3>
+                    <p>Robotic monitoring could provide farmers with accurate...</p>
+                </div>
+            </div>
+        </div>
+    
+
+
+        <h2 style={{textAlign: "center", fontSize:'40px' , fontWeight: 'bold' }}>Our Trusted Partner</h2>
+        <div className="partnership-container">
+          <div className="partnership-member">
+            <img src= {innovate_uk} alt="Innovate_uk" />
+            <h3>Innovate UK</h3>
+            </div>
+            <div className="partnership-member">
+            <img src= {sustainanle_ventures} alt="sustainables_ventures" />
+            <h3>sustainable Ventures</h3>
+            </div>
+            <div className="partnership-member">
+            <img src= {regen_earth} alt="regen_earth" />
+            <h3>Re-Generation Earth</h3>
+            </div>
+            <div className="partnership-member">
+            <img src= {gentle_farming} alt="gentle_farm" />
+            <h3>Gentle Farming</h3>
+            </div>
+            <div className="partnership-member">
+            <img src= {harper_adams} alt="harper_adams" />
+            <h3>Harper Adams University</h3>
+            </div>
+            <div className="partnership-member">
+            <img src= {Carbon} alt="carbon_trust" />
+            <h3>Carbon Trust</h3>
+            </div>
+        </div>
+
           </section>
         )}
         {activeSection === 'mobile_enclosure' && (
@@ -177,63 +335,99 @@ and complements to large agtech providers.</p>
                   <h1 style={{ fontSize: '50px', textAlign: 'center' }}>Our next Gen AI enabled Mobile Enclosure </h1>
                   <p>Your mobile units bring flexibility to your operations and we’re here to enhance that with our robust enclosure solutions.</p>
                   <p>We provide tailored, durable, and efficient enclosures designed to meet the dynamic needs of mobile operations, whether it's for telecom, environmental monitoring, or portable medical facilities.</p>
-                </div>
-                <img src= {container_logo}alt="Mobile Enclosure" className="mobile-enclosure-image" />
-                </div>
-                </div>
-              
-      <div className="benefits-container">
-        <h2 style={{ textAlign: 'center' , fontSize: '60px' }} >Benefits of Mob Grazing</h2>
-        <div className="benefits-list">
-          {benefits.map(benefit => (
-            <div key={benefit.id} className="benefit">
-              <img src={benefit.icon} alt={benefit.title} className="benefit-icon" />
-              <h3>{benefit.title}</h3>
-              <p>{benefit.description}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      <div className="slider-container">
-              <img src={images[currentIndex]} alt="Farm Ng Slide" />
+                </div >
+                <div className="slider-container">
+              <img src={enclosure_images[currentIndex]} alt="Enclosure Slide" />
               <div className="indicators">
-                {images.map((_, index) => (
+                {enclosure_images.map((_, index) => (
                   <span key={index} className={index === currentIndex ? 'dot active' : 'dot'}></span>
                 ))}
               </div>
             </div>
 
+                
+                </div>
+                </div>
+              
+      <div className="benefits-container">
+        <h2 style={{ textAlign: 'center' , fontSize: '40px' }} >Benefits of Mob Grazing</h2>
+        <div className="benefits-list">
+          {benefits1.map(benefit1 => (
+            <div key={benefit1.id} className="benefit">
+              <img src={benefit1.icon} alt={benefit1.title} className="benefit-icon" />
+              <h3>{benefit1.title}</h3>
+              <p>{benefit1.description}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+          <div className="contact-button-container">
+      <button className="green-button" onClick={() => setActiveSection('contact')}>
+        Click here to join the Waiting List !!!
+      </button>
+</div>
           </section>
         )}
 
         {activeSection === 'farm_ng' && (
           <section>
-            <div className="farm-ng-container">
-              <div className="farm-ng-content">
-                <div className="farm-ng-text">
-                  <h1 style={{ fontSize: '50px', textAlign: 'center' }}> Robots in Action </h1>
-                  <p>Innovative farming technologies and techniques.</p>
-                  <p>Content to be Added </p>
-                  <p>Content to be Added </p>
-                  <p>Content to be Added </p>
-                  <p>Content to be Added </p>
-                 </div>
-                <img src={farm_ng_logo} alt="Farm Ng" className="farm-ng-image" />
+          <div className="farm-ng-container">
+            <div className="farm-ng-content">
+              <div className="farm-ng-text">
+                <h1 style={{ fontSize: '50px', textAlign: 'center' }}>Robots in Action</h1>
+                <p>Innovative farming technologies and techniques.</p>
+              </div>
+              <div className="slider-container">
+                <img src={farmNgImages[farmNgIndex]} alt="Farm Ng Slide" />
+                <div className="indicators">
+                  {farmNgImages.map((_, index) => (
+                    <span key={index} className={index === farmNgIndex ? 'dot active' : 'dot'}></span>
+                  ))}
                 </div>
-                </div>
-          </section>
+              </div>
+            </div>
+          </div>
+        </section>
         )}
         {activeSection === 'clover_mapping' && (
           <section>
-            <h2>Clover Mapping</h2>
-            <p>Advanced mapping solutions for agricultural needs.</p>
-          </section>
+          <div className="mobile-enclosure-container">
+            <div className="mobile-enclosure-content">
+              <div className="mobile-enclosure-text">
+                <h1 style={{ fontSize: '50px', textAlign: 'center' }}>Grassland's AI</h1>
+                <p>Your mobile units bring flexibility to your operations...</p>
+              </div>
+              <div className="slider-container">
+                <img src={cloverMappingImages[cloverMappingIndex]} alt="Dug Slide" />
+                <div className="indicators">
+                  {cloverMappingImages.map((_, index) => (
+                    <span key={index} className={index === cloverMappingIndex ? 'dot active' : 'dot'}></span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="benefits2-container">
+        <h2 style={{ textAlign: 'center' , fontSize: '40px' }} >Benefits </h2>
+        <div className="benefits2-list">
+          {benefits2.map(benefit2 => (
+            <div key={benefit2.id} className="benefit2">
+              <img src={benefit2.icon} alt={benefit2.title} className="benefit2-icon" />
+              <h3>{benefit2.title}</h3>
+              <p>{benefit2.description}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+        </section>
         )}
         {activeSection === 'contact' && (
           <section>
-            <h2 style={{ fontSize: '50px', textAlign: 'center', margin: '20px 0' }}>Contact Us</h2>
-
+            <h2 style={{ fontSize: '50px', textAlign: 'center', marginTop: '-50px' ,marginBottom: '10px' }}>Contact Us</h2>
+             <div className="contact-container">
+           
             <form ref={form} onSubmit={sendEmail} className="contact-form">
               <label htmlFor="user_name">Name</label>
               <input type="text" name="user_name" id="user_name" required />
@@ -244,12 +438,19 @@ and complements to large agtech providers.</p>
               <label htmlFor="user_organization">Organization</label>
               <input type="text" name="user_organization" id="user_organization" required />
 
+              <label htmlFor="user_location">Location</label>
+              <input type="text" name="user_location" id="user_location" required />
+
               <label htmlFor="message">Message</label>
               <textarea name="message" id="message" rows="4" required></textarea>
 
               <button type="submit">Send</button>
             </form>
-          </section>
+            </div>
+            <div className="form-disclaimer">
+        We only store your personal information to provide the products and services you request from us.
+    </div>
+             </section>
         )}
       </main>
       <footer>
@@ -262,370 +463,10 @@ and complements to large agtech providers.</p>
         <a href="https://www.linkedin.com/company/listt-io/">
           <img src= {linkedin} alt="LinkedIn logo" />
         </a>
-        <a href="https://www.kristofhayes.me/">
-          <img src={web} alt="web logo" />
+        <a href="#" onClick={() => setActiveSection('contact')}>
+          <img src={email} alt="email logo" />
         </a>
       </footer>
-   <style jsx>{`
-
-      
-      .container {
-        min-height: 100vh; // Full viewport height
-        padding: 0 0.5rem;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between; // Aligns children to space between
-        align-items: center;
-      }
-
-        .header {
-          width: 100%;
-          background-color: olivedrab; /* Same as the image header background */
-          padding: 1rem 0;
-          text-align: right;
-        }
-
-        
-        .nav {
-            display: flex;
-            justify-content: flex-end; /* Align items to the right */
-            align-items: center; /* Ensure the alignment is set correctly */
-            width: 100%; /* Ensure the nav spans the entire width of the header */
-            
-            
-          }
-
-        .nav a {
-          color: white; /* For contrast against the blue background */
-          text-decoration: none;
-          font-size: 1.2rem;
-          padding-left: 50px;
-        }
-
-        .nav a:hover {
-          text-decoration: underline;
-        }
-
-        .nav a:last-child {
-          margin-right: 40px; /* Increased right margin for the last link */
-        }
-
-        main {
-          padding: 10rem 0;
-          flex: 1;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-        }
-
-        .about-section {
-          max-width: 1200px;
-          margin: 0 auto;
-          padding: 20px;
-          overflow-y: auto; /* Enable vertical scrolling if content overflows */
-        }
-        
-        .content-section {
-          padding: 20px;
-        }
-        
-        .team-container {
-          display: flex;
-          flex-wrap: wrap;
-          justify-content: center;
-          margin-top: 20px;
-        }
-        
-        .team-member {
-          margin: 20px;
-          text-align: center;
-        }
-        
-        .team-member img {
-          width: 250px; /* Adjust the size as needed */
-          height: 250px; /* Adjust the size as needed */
-          border-radius: 50%;
-          object-fit: cover;
-        }
-        
-        .team-member h3 {
-          margin-top: 10px;
-        }
-
-        footer {
-          width: 100%;
-          height: 100px;
-          border-top: 1px solid #eaeaea;
-          display: flex;
-          flex-direction: row;
-          flex-wrap: wrap;
-          justify-content: center;
-        }
-
-        footer img {
-          margin: 1rem;
-          height: 2rem;
-          width: auto;
-        }
-
-        footer a {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        }
-
-        a {
-          color: inherit;
-          text-decoration: none;
-        }
-
-        .title {
-          color: olivedrab;
-          text-align: center;
-          animation: fadeIn 2s ease-out;
-        }
-        .description {
-          animation: fadeIn 2s ease-out;
-        }
-        @keyframes fadeIn {
-          from {
-            opacity: 0;
-          }
-          to {
-            opacity: 1;
-          }
-        }
-        
-
-        .title a:hover,
-        .title a:focus,
-        .title a:active {
-          text-decoration: underline;
-        }
-
-        .title {
-          margin: 0;
-          line-height: 1.15;
-          font-size: 4rem;
-        }
-
-        .welcome{
-          line-height: 1.15;
-          font-size: 4rem;
-          color: black;
-
-        }
-
-       
-
-        .mobile-enclosure-container {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          padding: 50px;
-          background-color: #f4f4f4; /* Light grey background */
-        }
-
-        .mobile-enclosure-content {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          max-width: 1200px;
-          width: 100%;
-        }
-
-        .mobile-enclosure-image {
-          width: 50%;
-          height: auto;
-          border-radius: 10px; /* Optional rounded corners */
-        }
-
-        .listt-logo-image {
-          width: 50%;
-          height: auto;
-          border-radius: 10px; /* Optional rounded corners */
-        }
-
-        .mobile-enclosure-text {
-          width: 50%;
-          padding-right: 50px;
-        }     
-        
-        .slider-container {
-          position: relative;
-          width: 100%;
-          max-width: 600px; /* Adjust based on your layout */
-          margin: auto;
-          overflow: hidden;
-        }
-
-        .slider-container img {
-          width: 100%;
-          display: block; /* Removes bottom space/gap */
-        }
-
-        .indicators {
-          position: absolute;
-          bottom: 10px;
-          left: 50%;
-          transform: translateX(-50%);
-          display: flex;
-        }
-
-        .dot {
-          height: 10px;
-          width: 10px;
-          margin: 0 5px;
-          background-color: #bbb;
-          border-radius: 50%;
-          display: inline-block;
-        }
-
-        .dot.active {
-          background-color: #717171;
-        }
-
-        .farm-ng-container {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          padding: 50px;
-          background-color: #f4f4f4; /* Light grey background */
-        }
-
-        .farm-ng-content {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          max-width: 1200px;
-          width: 100%;
-        }
-
-        .farm-ng-image {
-          width: 50%;
-          height: auto;
-          border-radius: 10px; /* Optional rounded corners */
-        }
-
-        .farm-ng-text {
-          width: 50%;
-          padding-right: 50px;
-        }
-
-
-        h1 {
-          color: #333; /* Dark grey color for the text */
-          margin-bottom: 20px;
-        }
-
-        p {
-          color: #666; /* Lighter grey for paragraph text */
-          line-height: 1.6;
-        }
-
-        button {
-          padding: 10px 20px;
-          background-color: #0056b3; /* Blue background for the button */
-          color: white;
-          border: none;
-          border-radius: 5px;
-          cursor: pointer;
-        }
-
-        button:hover {
-          background-color: #004494; /* Darker blue on hover */
-        }
-
-        @media (max-width: 800px) {
-          .mobile-enclosure-content {
-            flex-direction: column;
-            text-align: center;
-          }
-
-          .mobile-enclosure-image,
-          .mobile-enclosure-text {
-            width: 100%;
-          }
-
-          .mobile-enclosure-text {
-            padding-left: 0;
-            padding-top: 20px;
-          }
-        }
-        .description {
-          line-height: 1.5;
-          font-size: 1.2rem;
-        }
-
-        @media (max-width: 600px) {
-          .nav {
-            flex-direction: column;
-          }
-        }
-
-        .benefits-container {
-          text-align: center;
-          width: 100%;
-        }
-
-        .benefits-list {
-          display: flex;
-          justify-content: space-around;
-          align-items: center;
-          padding: 20px;
-        }
-
-        .benefit {
-          flex-basis: 30%;
-        }
-
-        .benefit-icon {
-          width: 300px;
-          height: 300px;
-          margin-bottom: 10px;
-        }
-
-        .contact-form {
-          max-width: 900px;
-          text-align: centre
-          margin: 0 auto;
-          display: flex;
-          flex-direction: column;
-          padding: 0px;
-        }
-
-        .contact-form label {
-          margin-bottom: 5px;
-          font-weight: bold;
-          padding: 0px;
-        }
-
-        .contact-form input,
-        .contact-form textarea {
-          margin-bottom: 20px;
-          padding: 16px;
-          font-size: 20px;
-          border: 1px solid #ccc;
-          border-radius: 4px;
-        }
-
-        .contact-form button {
-          padding: 10px 15px;
-          background-color: olivedrab;
-          color: white;
-          border: none;
-          border-radius: 4px;
-          cursor: pointer;
-        }
-
-        .contact-form button:hover {
-          background-color: darkolivegreen;
-        }
-
-
-
-      `}</style>
     </div>
   );
 }
