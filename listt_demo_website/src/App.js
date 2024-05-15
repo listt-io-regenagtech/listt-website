@@ -73,7 +73,7 @@ export default function App() {
     },
     {
       id: 3,
-      title: "Animal Well-being Monitoring",
+      title: "Animal Wellbeing Monitoring",
       description: " Click here to add your own text.",
       icon: stage3  // Update path to your icon
     },
