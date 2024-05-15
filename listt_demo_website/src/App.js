@@ -44,6 +44,7 @@ import autonomy from './images/grasslands_ai/autonomy.png'
 import farm_ng_fp from './images/front_page/robot_new_hatterrel.png'
 
 import farm_ng_logo from './images/farm_ng/farm_ng0.jpeg';
+import linked_in_icon from './images/footer_icons/linkedin_blue.png';
 
 
 import front_page_logo from './images/front_page/listt_logo_with_name1.png'
@@ -77,12 +78,12 @@ export default function App() {
       description: " Click here to add your own text.",
       icon: stage3  // Update path to your icon
     },
-    // {
-    //   id: 4,
-    //   title: "Smart Battery System",
-    //   description: " Click here to add your own text.",
-    //   icon: stage4 // Update path to your icon
-    // }
+    {
+      id: 4,
+      title: "Smart Battery System",
+      description: " Click here to add your own text.",
+      icon: stage4 // Update path to your icon
+    }
   ];
 
   const benefits2 = [
@@ -174,7 +175,7 @@ export default function App() {
   return (
     <div className="container">
       <Helmet>
-        <title>appropriate technology solutions for regeneration - listt.io</title>
+        <title>listt.io - appropriate farming technologies</title>
         <link rel="icon" href="/favicon.ico" />
       </Helmet>
       <header className="header">
@@ -191,111 +192,98 @@ export default function App() {
         {activeSection === 'about' && (
           <section>
             <h1 className="title">
-              <span className="welcome">Welcome to</span>
+              {/* <span className="welcome">welcome to</span> */}
               <a href="http://www.listt.io/">
                 <img src={front_page_header_logo} alt="listt.io Logo" style={{ padding: '40px' ,height: '100px', verticalAlign: 'middle' }} />
               </a>
             </h1>
-            <p className="description" style={{ textAlign: 'center' }}>appropriate technology solutions for regeneration</p>
+            <p className="description" style={{ textAlign: 'center' }}>appropriate farming technologies</p>
            
         <div className="mobile-enclosure-container">
               <div className="mobile-enclosure-content">
                 <div className="mobile-enclosure-text">
-                  <h1 style={{ fontSize: '50px', textAlign: 'center' }}> Introduction </h1>
-                  <p>listt.io is a UK-based startup focusing on delivering appropriate and scalable technology
-                      solutions for regenerative agricultural businesses. Its background and core expertise lies in
-                      technology development in an innovation context - around robotics, connected sensors,
-                      machine vision and cloud infrastructure. The core values of the company are built around
-                      serving a customer segment of farming businesses who wish to build sustainable food
-                      systems closer to nature. We want to help these businesses access the appropriate level of
-                      technological innovation to allow them to benefit from the efficiencies and insights they can
-                      deliver. As well as the technologies, listt.io is exploring novel business models, to allow these
-                      technologies to commercialise and reach a wider farming community, offering alternatives
-                      and complements to large agtech providers.</p>
+                  <h1 style={{ fontSize: '50px', textAlign: 'center' }}> About </h1>
+                  <p>listt.io provides appropriate technology solutions for nature friendly farming systems. Our expertise lise in technology integration - we have experience with robotics, IoT, machine learning and learning fast about agricultural engineering. We strike the right balance between using open-source and proprietary modules to build accessible and affordable solutions that are simple to use and deliver value.</p>
                       </div>
                 <img src={front_page_logo} alt="listt logo" className="listt-logo-image" />
                 </div>
                 </div>
 
-            <h2 style={{textAlign: "center", fontSize:'40px' , fontWeight: 'bold' }}>Meet Our Team</h2>
+            <h2 style={{textAlign: "center", fontSize:'40px' , fontWeight: 'bold' }}>Team</h2>
             <img className="group-photo" src= {team_image} alt="team_image" />
+        <div className="team-enclosure-container">
         <div className="team-container">
           <div className="team-member">
-            <img src= {Kristof} alt="Kristof" />
             <h3 >Kristof Hayes </h3> 
-            <p>Role: Founder</p>
-            <div className="linkedin-button-container">
+            <p> Technology Co-Founder</p>
               <button className="blue-button" onClick={() => window.open("https://uk.linkedin.com/in/hayeskg", "_blank")}>
-              Connect on LinkedIn
+                <img src={linked_in_icon} alt="LinkedIn icon" width={50} height={50}  />
               </button>
-        </div>
           </div>
           <div className="team-member">
-            <img src= {alan} alt="Alan" />
-            <h3>Alan Jurnet Berteloot</h3>
-            <p>Role: Tech Lead</p>
-            <div className="linkedin-button-container">
-              <button className="blue-button" onClick={() => window.open("https://uk.linkedin.com/in/alan-jurnet-berteloot", "_blank")}>
-              Connect on LinkedIn
-              </button>
-        </div>
-        </div>
-          <div className="team-member">
-            <img src= {erwann} alt="Erwann" />
-            <h3>Erwann Lompech Leneveu</h3>
-            <p>Role: Operations Lead</p>
-            <div className="linkedin-button-container">
-              <button className="blue-button" onClick={() => window.open("https://www.linkedin.com/in/kristof-profile", "_blank")}>
-              Connect on LinkedIn
-              </button>
-        </div>
-          </div>
-          <div className="team-member">
-            <img src= {thomas} alt="Thomas" />
             <h3>Thomas Gent</h3>
-            <p>Role: Farming Lead</p>
+            <p>Farming Co-Founder</p>
             <div className="linkedin-button-container">
               <button className="blue-button" onClick={() => window.open("https://uk.linkedin.com/in/thomas-gent-farmer", "_blank")}>
-               Connect on LinkedIn
+               <img src={linked_in_icon} alt="LinkedIn icon" width={50} height={50}  />
               </button>
-        </div>
+            </div>
           </div>
-          <div className="team-member">
-            <img src= {swapnil} alt="Swapnil" />
-            <h3>Swapnil Mane</h3>
-            <p>Role: Robotics Engineer</p>
+           <div className="team-container">
+            <div className="team-member">
+              <h3>Alan Jurnet Berteloot</h3>
+              <p>Tech Lead</p>
+              <div className="linkedin-button-container">
+                <button className="blue-button" onClick={() => window.open("https://uk.linkedin.com/in/alan-jurnet-berteloot", "_blank")}>
+                  <img src={linked_in_icon} alt="LinkedIn icon" width={50} height={50}  />
+                </button>
+              </div>
+            </div>
+            <div className="team-member">
+           <h3>Erwann Lompech Leneveu</h3>
+            <p>Operations Lead</p>
             <div className="linkedin-button-container">
-              <button className="blue-button" onClick={() => window.open("https://uk.linkedin.com/in/swapnil-mane-b3b164176", "_blank")}>
-              Connect on LinkedIn
+              <button className="blue-button" onClick={() => window.open("https://www.linkedin.com/in/kristof-profile", "_blank")}>
+              <img src={linked_in_icon} alt="LinkedIn icon" width={50} height={50}  />
               </button>
+              </div>
+            </div>
+            <div className="team-member">
+              <h3>Swapnil Mane</h3>
+              <p>Robotics Engineer</p>
+              <div className="linkedin-button-container">
+                <button className="blue-button" onClick={() => window.open("https://uk.linkedin.com/in/swapnil-mane-b3b164176", "_blank")}>
+                <img src={linked_in_icon} alt="LinkedIn icon" width={50} height={50}  />
+                </button>
+              </div>
+            </div>
         </div>
-          </div>
         </div>
+      </div>
 
         <div className="carousel-container">
-            <h2 style={{textAlign: "center", fontSize:'40px' , fontWeight: 'bold' , marginTop: '20px' }}>What we offer to you ?</h2>
-            <p>content</p>
+            <h2 style={{textAlign: "center", fontSize:'40px' , fontWeight: 'bold' , marginTop: '20px' }}>Offering</h2>
             <div className="carousel">
                 <div className="carousel-item">
                     <img src={stage2}alt="Mobile_enclosure" />
-                    <h3>Mobile Enclosure</h3>
-                    <p>A robotic system for monitoring, analysing, and treating pests...</p>
+                    <h3>MOB-OT</h3>
+                    <p>Moving mob grazing fencing has never been easier.</p>
                 </div>
                 <div className="carousel-item">
                     <img src={farm_ng_fp} alt="Far_NG" />
-                    <h3>Farm-Ng</h3>
-                    <p>Integration of Rootwave's non-chemical weeding probes...</p>
+                    <h3>farm-ng</h3>
+                    <p>We are the first integrators of the Amiga in the UK.</p>
                 </div>
                 <div className="carousel-item">
                     <img src={front_page_logo} alt="Robotic soil sampling" />
-                    <h3>Soil Health Monitoring</h3>
-                    <p>Robotic monitoring could provide farmers with accurate...</p>
+                    <h3>DUG</h3>
+                    <p>Discover Under Ground - autonomous soil health monitoring.</p>
                 </div>
             </div>
         </div>
     
 
-
+{/* 
         <h2 style={{textAlign: "center", fontSize:'40px' , fontWeight: 'bold' }}>Our Trusted Partner</h2>
         <div className="partnership-container">
           <div className="partnership-member">
@@ -322,7 +310,7 @@ export default function App() {
             <img src= {Carbon} alt="carbon_trust" />
             <h3>Carbon Trust</h3>
             </div>
-        </div>
+        </div> */}
 
           </section>
         )}
@@ -332,7 +320,7 @@ export default function App() {
             <div className="mobile-enclosure-container">
               <div className="mobile-enclosure-content">
                 <div className="mobile-enclosure-text">
-                  <h1 style={{ fontSize: '50px', textAlign: 'center' }}>Our next Gen AI enabled Mobile Enclosure </h1>
+                  <h1 style={{ fontSize: '50px', textAlign: 'center' }}>MOB-OT </h1>
                   <p>Your mobile units bring flexibility to your operations and we’re here to enhance that with our robust enclosure solutions.</p>
                   <p>We provide tailored, durable, and efficient enclosures designed to meet the dynamic needs of mobile operations, whether it's for telecom, environmental monitoring, or portable medical facilities.</p>
                 </div >
@@ -448,7 +436,7 @@ export default function App() {
             </form>
             </div>
             <div className="form-disclaimer">
-        We only store your personal information to provide the products and services you request from us.
+        We do not share your personal information with anyone - it's just to get in touch.
     </div>
              </section>
         )}

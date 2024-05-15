@@ -2,7 +2,6 @@
       
       .container {
         min-height: 100vh; 
-        padding: 0 0.5rem;
         display: flex;
         flex-direction: column;
         justify-content: space-between; 
@@ -10,7 +9,7 @@
 
         .header {
           width: 100%;
-          background-color: olivedrab; /* Same as the image header background */
+          background-color: #004F31; /* Same as the image header background */
           padding: 1rem 0;
           text-align: right;
         }
@@ -63,6 +62,7 @@
           flex-wrap: wrap;
           justify-content: center;
           margin-top: 20px;
+          width: 75%;
         }
         
         .team-member {
@@ -70,12 +70,7 @@
           text-align: center;
         }
         
-        .team-member img {
-          width: 250px; /* Adjust the size as needed */
-          height: 250px; /* Adjust the size as needed */
-          border-radius: 50%;
-          object-fit: cover;
-        }
+       
         
         .team-member h3 {
           margin-top: 10px;
@@ -231,7 +226,17 @@
           justify-content: center;
           align-items: center;
           padding: 50px;
-          background-color: #f4f4f4; /* Light grey background */
+          background-color: #f4f4f4;
+          border-radius: 60px;
+        }
+
+        .team-enclosure-container {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          padding: 50px;
+          background-color: white;
+        
         }
 
         .mobile-enclosure-content {
@@ -257,6 +262,7 @@
         .mobile-enclosure-text {
           width: 50%;
           padding-right: 50px;
+          /* color: #666; */
         }     
         
         .slider-container {
@@ -365,16 +371,22 @@
         }
 
         button {
-          padding: 10px 20px;
-          background-color: #0056b3; /* Blue background for the button */
-          color: white;
+          /* padding: 10px 10px; */
+          /* background-color: #0056b3; Blue background for the button */
+          /* color: white; */
           border: none;
           border-radius: 5px;
           cursor: pointer;
+          background-color: white;
+        }
+
+        .linkedin_button {
+          width: 10;
+          height: 10;
         }
 
         button:hover {
-          background-color: #004494; /* Darker blue on hover */
+          /* background-color: #004494; Darker blue on hover */
         }
 
         @media (max-width: 800px) {
@@ -474,7 +486,7 @@
         }
 
         .partnership_images-icon {
-          width: 300px;
+          width: 30px;
           height: Auto;
           margin-bottom: 10px;
         }
