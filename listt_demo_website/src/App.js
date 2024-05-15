@@ -73,16 +73,16 @@ export default function App() {
     },
     {
       id: 3,
-      title: "Animal Wellbeing Monitoring",
+      title: "Animal Well-being Monitoring",
       description: " Click here to add your own text.",
       icon: stage3  // Update path to your icon
     },
-    {
-      id: 4,
-      title: "Smart Battery System",
-      description: " Click here to add your own text.",
-      icon: stage4 // Update path to your icon
-    }
+    // {
+    //   id: 4,
+    //   title: "Smart Battery System",
+    //   description: " Click here to add your own text.",
+    //   icon: stage4 // Update path to your icon
+    // }
   ];
 
   const benefits2 = [
